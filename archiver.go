@@ -9,6 +9,7 @@ import (
 
 // Archiver reprensents a archiver handler.
 type Archiver interface {
+	DestFmt() string
 	Archive(src, dest string) error
 }
 
@@ -16,6 +17,10 @@ type zipper struct{}
 
 // ZIP is an Archiver that zips and unzips files.
 var ZIP Archiver = (*zipper)(nil)
+
+func (z *zipper) DestFmt() string {
+	return "%d.zip"
+}
 
 func (z *zipper) Archive(src, dest string) (err error) {
 	if err = os.MkdirAll(filepath.Dir(dest), 0777); err != nil {
