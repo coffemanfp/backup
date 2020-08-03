@@ -25,7 +25,7 @@ func initFlags() {
 }
 
 func initDatabase() {
-	db, err := filedb.Dial(*dbPath)
+	db, err := filedb.Dial(dbPath)
 	if err != nil {
 		log.Fatalln(err)
 	}
