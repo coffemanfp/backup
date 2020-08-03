@@ -1,0 +1,9 @@
+# Binaries
+
+cmds/backup/backup
+cmds/backupd/backupd
+
+# Data
+cmds/backup/backupdata
+cmds/backupd/archive
+cmds/backupd/data

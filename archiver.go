@@ -3,6 +3,7 @@ package backup
 import (
 	"archive/zip"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 )
@@ -36,8 +37,10 @@ func (z *zipper) Archive(src, dest string) (err error) {
 	w := zip.NewWriter(out)
 	defer w.Close()
 
+	log.SetFlags(log.Lshortfile)
+
 	err = filepath.Walk(src, func(path string, info os.FileInfo, err error) (err2 error) {
-		if info.IsDir() {
+		if info == nil || info.IsDir() {
 			return // skip
 		}
 		if err != nil {
